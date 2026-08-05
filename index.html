@@ -378,6 +378,70 @@
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
 
+  /* --- CI/CD mockup --- */
+  .m-cicd {
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    padding: 14px;
+    font-size: 0.8rem;
+  }
+  .m-cicd .pipe-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .m-cicd .pipe-head b { font-size: 0.8rem; }
+  .m-cicd .pipe-status {
+    font-size: 0.68rem;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(52,211,153,0.12);
+    color: #6ee7b7;
+    border: 1px solid rgba(52,211,153,0.3);
+  }
+  .m-cicd .step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--card-border);
+  }
+  .m-cicd .step .st-check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: rgba(52,211,153,0.15);
+    color: #34d399;
+    display: grid; place-items: center;
+    font-size: 0.65rem;
+    font-weight: 800;
+  }
+  .m-cicd .step .st-check.building {
+    background: rgba(6,182,212,0.15);
+    color: #67e8f9;
+  }
+  .m-cicd .step small {
+    color: var(--muted);
+    font-size: 0.66rem;
+    margin-left: auto;
+  }
+  .m-cicd .step em {
+    font-style: normal;
+    font-size: 0.72rem;
+    color: #d4d4e0;
+  }
+  .m-cicd .steps-title {
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
   .project-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
   .project-body h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
   .project-body h3 span {
@@ -602,6 +666,44 @@
           </div>
           <div class="project-actions">
             <a class="btn btn-primary" href="https://github.com/ashadtahir/EduCortex" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- CI/CD Demo -->
+      <article class="project reveal">
+        <div class="project-top">
+          <span class="tag" style="--p-color:#f472b6;">DevOps</span>
+          <span>2026</span>
+        </div>
+        <div class="mockup">
+          <div class="m-cicd">
+            <div class="pipe-head">
+              <b>CI Pipeline</b>
+              <span class="pipe-status">✓ Passed</span>
+            </div>
+            <div class="steps-title">GitHub Actions — push to main</div>
+            <div class="step"><span class="st-check">✓</span><em>actions/checkout</em><small>done</small></div>
+            <div class="step"><span class="st-check">✓</span><em>setup-python 3.12</em><small>done</small></div>
+            <div class="step"><span class="st-check">✓</span><em>pip install -r requirements.txt</em><small>done</small></div>
+            <div class="step"><span class="st-check building">✓</span><em>pytest</em><small>passed</small></div>
+            <div class="step"><span class="st-check">✓</span><em>docker build -t ci-demo</em><small>done</small></div>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>CI/CD Demo</h3>
+          <p>A Dockerized Python application with an automated CI pipeline — every push to main triggers tests and a Docker build.</p>
+          <ul class="features">
+            <li>GitHub Actions pipeline: lint-free install → pytest → Docker build</li>
+            <li>Dockerized deployment with a reproducible Python 3.12 image</li>
+            <li>Test-driven workflow running automatically on every push</li>
+          </ul>
+          <div class="stack">
+            <span>Python</span><span>pytest</span><span>Docker</span>
+            <span>GitHub Actions</span><span>CI/CD</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn btn-primary" href="https://github.com/ashadtahir/ci-cd-demo" target="_blank" rel="noopener">View Code</a>
           </div>
         </div>
       </article>
