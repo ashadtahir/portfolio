@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashad Tahir — Portfolio</title>
+<meta name="description" content="Portfolio of Ashad Tahir — full-stack AI developer. Featuring DebateArena and EduCortex, two AI-powered web applications.">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg-soft: #12121a;
+    --card: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.09);
+    --text: #e8e8f0;
+    --muted: #9a9aab;
+    --accent-1: #8b5cf6;
+    --accent-2: #06b6d4;
+    --accent-3: #f472b6;
+    --grad: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    --grad-hot: linear-gradient(135deg, var(--accent-3), var(--accent-1));
+    --radius: 16px;
+    --maxw: 1080px;
+    --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: rgba(139,92,246,0.35); }
+
+  .bg-glow {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(600px 400px at 15% 10%, rgba(139,92,246,0.14), transparent 60%),
+      radial-gradient(600px 400px at 85% 20%, rgba(6,182,212,0.12), transparent 60%),
+      radial-gradient(700px 500px at 50% 90%, rgba(244,114,182,0.08), transparent 60%);
+  }
+
+  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(10,10,15,0.72);
+    border-bottom: 1px solid var(--card-border);
+  }
+  nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  @media (max-width: 640px) { .nav-links { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 110px 0 80px;
+    text-align: center;
+  }
+  .hero .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .hero .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 12px #34d399;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 50% { opacity: 0.4; } }
+  .hero h1 {
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 .grad {
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p.tagline {
+    margin: 22px auto 34px;
+    max-width: 620px;
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+  .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-primary {
+    background: var(--grad);
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(139,92,246,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(139,92,246,0.5); }
+  .btn-ghost {
+    color: var(--text);
+    border: 1px solid var(--card-border);
+    background: var(--card);
+  }
+  .btn-ghost:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.25); }
+
+  .contact-row {
+    margin-top: 48px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .contact-row a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    background: var(--card);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-row a:hover { color: var(--text); border-color: var(--accent-1); }
+
+  .contact-row svg { width: 16px; height: 16px; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 70px 0; }
+  .section-head { margin-bottom: 44px; }
+  .section-head h2 {
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .section-head h2 .grad {
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .section-head p { color: var(--muted); margin-top: 10px; max-width: 560px; }
+
+  /* ---------- Projects ---------- */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 860px) { .projects-grid { grid-template-columns: 1fr; } }
+
+  .project {
+    border: 1px solid var(--card-border);
+    background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.02));
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .project:hover { transform: translateY(-6px); border-color: rgba(139,92,246,0.4); }
+
+  .project-top {
+    padding: 18px;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .project-top .tag { display: inline-flex; align-items: center; gap: 6px; }
+  .project-top .tag::before {
+    content: "";
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--p-color, var(--accent-1));
+    box-shadow: 0 0 10px var(--p-color, var(--accent-1));
+  }
+
+  .mockup {
+    padding: 20px;
+    background:
+      radial-gradient(500px 200px at 50% 0%, rgba(255,255,255,0.03), transparent),
+      var(--bg-soft);
+  }
+
+  /* --- DebateArena mockup --- */
+  .m-debate {
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    padding: 14px;
+    font-size: 0.8rem;
+  }
+  .m-debate .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .m-debate .persona {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+  }
+  .m-debate .avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--grad);
+    display: grid; place-items: center;
+    color: #fff; font-size: 0.7rem; font-weight: 800;
+  }
+  .m-debate .pill {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    background: rgba(6,182,212,0.15);
+    color: #67e8f9;
+    border: 1px solid rgba(6,182,212,0.3);
+  }
+  .m-debate .proposition {
+    background: rgba(139,92,246,0.12);
+    border: 1px solid rgba(139,92,246,0.3);
+    border-radius: 8px;
+    padding: 8px 10px;
+    color: #c4b5fd;
+    font-size: 0.74rem;
+    margin-bottom: 12px;
+  }
+  .m-debate .arg {
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 12px;
+    background: rgba(255,255,255,0.02);
+  }
+  .m-debate .arg .label {
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .m-debate .arg p { font-size: 0.78rem; color: #d4d4e0; }
+  .m-debate .scores {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .m-debate .score {
+    flex: 1;
+    text-align: center;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 8px 4px;
+    background: rgba(255,255,255,0.02);
+  }
+  .m-debate .score b {
+    display: block;
+    font-size: 1rem;
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .m-debate .score span {
+    font-size: 0.64rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .m-debate .fallacies {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .m-debate .f {
+    font-size: 0.66rem;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: rgba(244,114,182,0.12);
+    color: #f9a8d4;
+    border: 1px solid rgba(244,114,182,0.3);
+  }
+  .m-debate .f.ok {
+    background: rgba(52,211,153,0.12);
+    color: #6ee7b7;
+    border-color: rgba(52,211,153,0.3);
+  }
+
+  /* --- EduCortex mockup --- */
+  .m-grading {
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    padding: 14px;
+    font-size: 0.8rem;
+  }
+  .m-grading .bar-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .m-grading .bar-head b { font-size: 0.82rem; }
+  .m-grading .status {
+    font-size: 0.68rem;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(52,211,153,0.12);
+    color: #6ee7b7;
+    border: 1px solid rgba(52,211,153,0.3);
+  }
+  .m-grading .track {
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .m-grading .fill {
+    height: 100%;
+    width: 82%;
+    border-radius: 999px;
+    background: var(--grad);
+    box-shadow: 0 0 16px rgba(6,182,212,0.5);
+  }
+  .m-grading .rows { display: flex; flex-direction: column; gap: 8px; }
+  .m-grading .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    background: rgba(255,255,255,0.02);
+  }
+  .m-grading .row .name { font-size: 0.76rem; }
+  .m-grading .row .name small { display: block; color: var(--muted); font-size: 0.66rem; }
+  .m-grading .row .pct {
+    font-weight: 700;
+    font-size: 0.8rem;
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .project-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+  .project-body h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+  .project-body h3 span {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .project-body p { color: var(--muted); font-size: 0.95rem; margin-bottom: 18px; }
+
+  .features { list-style: none; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+  .features li {
+    display: flex;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: #c9c9d6;
+  }
+  .features li::before {
+    content: "✓";
+    flex-shrink: 0;
+    color: #34d399;
+    font-weight: 700;
+  }
+
+  .stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .stack span {
+    font-size: 0.74rem;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    color: var(--muted);
+  }
+  .stack span:hover { border-color: var(--accent-1); color: var(--text); }
+
+  .project-actions { margin-top: auto; display: flex; gap: 12px; }
+  .project-actions .btn { padding: 10px 20px; font-size: 0.88rem; }
+
+  /* ---------- Skills ---------- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+  }
+  .skill {
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .skill:hover { transform: translateY(-3px); border-color: var(--accent-1); }
+  .skill .icon { font-size: 1.4rem; margin-bottom: 8px; }
+  .skill b { font-size: 0.9rem; display: block; }
+  .skill small { color: var(--muted); font-size: 0.72rem; }
+
+  /* ---------- Contact ---------- */
+  .contact-card {
+    text-align: center;
+    border: 1px solid var(--card-border);
+    background: linear-gradient(160deg, rgba(139,92,246,0.1), rgba(6,182,212,0.06));
+    border-radius: var(--radius);
+    padding: 60px 30px;
+  }
+  .contact-card h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 800; margin-bottom: 12px; }
+  .contact-card p { color: var(--muted); max-width: 480px; margin: 0 auto 30px; }
+  .contact-card .contact-row { margin-top: 0; }
+
+  footer {
+    border-top: 1px solid var(--card-border);
+    padding: 30px 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<nav>
+  <div class="container">
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> Available for opportunities</div>
+    <h1>Hi, I'm <span class="grad">Ashad Tahir</span></h1>
+    <p class="tagline">I build intelligent software solutions that combine AI, automation, and modern engineering—turning ideas into scalable, polished products with a focus on clean architecture and exceptional user experiences.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+    <div class="contact-row">
+      <a href="https://github.com/ashadtahir" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.66.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.21.68.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/ashad-tahir-18a757246" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:ashadtahir88@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        ashadtahir88@gmail.com
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="section-head reveal">
+      <h2><span class="grad">Featured</span> Projects</h2>
+      <p>Two full-stack AI applications, built end-to-end — from backend NLP pipelines to polished frontends.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- DebateArena -->
+      <article class="project reveal">
+        <div class="project-top">
+          <span class="tag" style="--p-color:#8b5cf6;">Featured</span>
+          <span>2026</span>
+        </div>
+        <div class="mockup">
+          <div class="m-debate">
+            <div class="header">
+              <span class="persona"><span class="avatar">S</span> Socrates</span>
+              <span class="pill">Round 2 / 5</span>
+            </div>
+            <div class="proposition">"AI will replace most white-collar jobs"</div>
+            <div class="arg">
+              <div class="label">Your Argument</div>
+              <p>Automation historically displaces tasks, not entire roles — new jobs emerge around augmented work.</p>
+            </div>
+            <div class="scores">
+              <div class="score"><b>78</b><span>Logic</span></div>
+              <div class="score"><b>64</b><span>Evidence</span></div>
+              <div class="score"><b>72</b><span>Persuasion</span></div>
+            </div>
+            <div class="fallacies">
+              <span class="f ok">✓ Coherent structure</span>
+              <span class="f">Hasty generalization</span>
+              <span class="f">Slippery slope</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>DebateArena</h3>
+          <p>An AI-powered debate coaching platform that evaluates the quality of your arguments — not just their content — with live reasoning analysis and coaching insights.</p>
+          <ul class="features">
+            <li>4 debate personas — Socrates, Prosecutor, Philosopher, Devil's Advocate</li>
+            <li>Structured 5-round debates with real-time analysis</li>
+            <li>6-fallacy detection + evidence quality scoring</li>
+            <li>Semantic reasoning analysis (all-MiniLM-L6-v2 embeddings)</li>
+            <li>Provider-agnostic LLM client — OpenAI, OpenRouter, Groq, DeepSeek</li>
+          </ul>
+          <div class="stack">
+            <span>Next.js 16</span><span>React 19</span><span>TypeScript</span>
+            <span>Tailwind CSS</span><span>FastAPI</span><span>Python</span>
+            <span>Framer Motion</span><span>Sentence Transformers</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn btn-primary" href="https://github.com/ashadtahir/DebateArena" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EduCortex -->
+      <article class="project reveal">
+        <div class="project-top">
+          <span class="tag" style="--p-color:#06b6d4;">AI Grading</span>
+          <span>2026</span>
+        </div>
+        <div class="mockup">
+          <div class="m-grading">
+            <div class="bar-head">
+              <b>Assignment — Research Essay</b>
+              <span class="status">Good Match</span>
+            </div>
+            <div class="track"><div class="fill"></div></div>
+            <div class="rows">
+              <div class="row"><span class="name">Class: CS 301</span><span class="pct">82%</span></div>
+              <div class="row"><span class="name">Student: A. Khan<small>Submitted 2h ago</small></span><span class="pct">82%</span></div>
+              <div class="row"><span class="name">Similarity vs reference</span><span class="pct">82%</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>EduCortex</h3>
+          <p>An AI-powered automated grading MVP with teacher/student role flows, invite-only onboarding, class management, and semantic similarity scoring.</p>
+          <ul class="features">
+            <li>JWT authentication with role-aware access control</li>
+            <li>Invite-only student onboarding via join codes</li>
+            <li>Class, assignment & submission management</li>
+            <li>Semantic similarity scoring (Sentence Transformers)</li>
+            <li>Gemini & Groq AI grading with fault-tolerant fallbacks</li>
+          </ul>
+          <div class="stack">
+            <span>Next.js</span><span>TypeScript</span><span>FastAPI</span>
+            <span>Python</span><span>PostgreSQL</span><span>SQLite</span>
+            <span>JWT</span><span>Sentence Transformers</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn btn-primary" href="https://github.com/ashadtahir/EduCortex" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="section-head reveal">
+      <h2><span class="grad">Skills</span> & Tools</h2>
+      <p>Technologies I work with across the full stack — from AI pipelines to frontend polish.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill reveal"><div class="icon">⚛️</div><b>Next.js / React</b><small>App Router, SSR, RSC</small></div>
+      <div class="skill reveal"><div class="icon">🔷</div><b>TypeScript</b><small>Type-safe code</small></div>
+      <div class="skill reveal"><div class="icon">🎨</div><b>Tailwind CSS</b><small>Modern styling</small></div>
+      <div class="skill reveal"><div class="icon">🐍</div><b>Python</b><small>Backend & AI</small></div>
+      <div class="skill reveal"><div class="icon">⚡</div><b>FastAPI</b><small>Async APIs</small></div>
+      <div class="skill reveal"><div class="icon">🧠</div><b>LLM Integration</b><small>OpenAI, Groq, Gemini</small></div>
+      <div class="skill reveal"><div class="icon">📊</div><b>Embeddings</b><small>Sentence Transformers</small></div>
+      <div class="skill reveal"><div class="icon">🐳</div><b>Docker</b><small>Containerized apps</small></div>
+      <div class="skill reveal"><div class="icon">🔐</div><b>Auth & Security</b><small>JWT, RBAC</small></div>
+      <div class="skill reveal"><div class="icon">🗄️</div><b>Databases</b><small>PostgreSQL, SQLite</small></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="contact-card reveal">
+      <h2>Let's build something <span class="grad">smart</span></h2>
+      <p>I'm open to software engineering roles where I can apply AI to real products. Reach out — I usually reply fast.</p>
+      <div class="contact-row">
+        <a href="https://github.com/ashadtahir" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.66.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.21.68.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/ashad-tahir-18a757246" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:ashadtahir88@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          ashadtahir88@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">© 2026 Ashad Tahir · Built by hand, no frameworks</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+</script>
+</body>
+</html>
